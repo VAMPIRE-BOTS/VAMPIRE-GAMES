@@ -1,0 +1,8 @@
+aiogram==3.7.0
+motor
+pymongo
+python-dotenv
+uvloop
+redis
+orjson
+aiofiles
