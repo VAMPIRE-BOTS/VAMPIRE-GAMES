@@ -2,6 +2,8 @@ import asyncio
 import uvloop
 
 from aiogram import Bot, Dispatcher
+# यहाँ नया इम्पोर्ट जोड़ा गया है
+from aiogram.client.default import DefaultBotProperties
 
 from config import BOT_TOKEN
 
@@ -30,8 +32,11 @@ from games.puzzle import router as puzzle_router
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
-# BOT CLIENT
-bot = Bot(token=BOT_TOKEN, parse_mode="HTML")
+# BOT CLIENT - यहाँ बदलाव किया गया है ताकि एरर न आए
+bot = Bot(
+    token=BOT_TOKEN, 
+    default=DefaultBotProperties(parse_mode="HTML")
+)
 
 # DISPATCHER
 dp = Dispatcher()
