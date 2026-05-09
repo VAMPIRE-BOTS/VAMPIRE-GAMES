@@ -1,0 +1,40 @@
+{
+  "name": "VAMPIRE GAMES BOT",
+  "description": "Premium Telegram Multiplayer Viral Games Bot",
+  "logo": "https://i.imgur.com/yourdp.png",
+  "keywords": [
+    "telegram",
+    "games",
+    "aiogram",
+    "multiplayer",
+    "viral-games"
+  ],
+  "website": "https://github.com/VAMPIRE-BOTS/VAMPIRE-GAMES",
+  "repository": "https://github.com/VAMPIRE-BOTS/VAMPIRE-GAMES",
+  "success_url": "/",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your Telegram Bot Token",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Your Telegram User ID",
+      "required": true
+    },
+    "MONGO_DB_URI": {
+      "description": "MongoDB Database URL",
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
