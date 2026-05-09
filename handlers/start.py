@@ -11,126 +11,53 @@ router = Router()
 
 
 START_TEXT = """
-✨ Welcome To Vampire Games Bot ✨
+✨ **Welcome To Vampire Games Bot** ✨
 
-🎮 Premium Multiplayer Chaos Games
+🎮 *Premium Multiplayer Chaos Games*
 
-💣 Bomb Battles
-🕵️ Secret Spy
-🎭 Fake Identity
-⚡ Fastest Finger
-📖 Story Mode
-👻 Ghost Reply
-💰 Economy System
-💘 Love & Couples Games
-🧩 Puzzle & Brain Games
+💣 Bomb • 🕵️ Spy • 🎭 Identity
+⚡ Finger • 📖 Story • 👻 Ghost
+💰 Economy • 💘 Love • 🧩 Puzzle
 
-🔥 Add Me To Your Group
-And Start The Chaos 😭
+🔥 **Add Me To Your Group**
+And Start The Chaos! ⚡
 """
 
 
 HELP_TEXT = """
-📚 VAMPIRE GAMES HELP MENU
+📚 **VAMPIRE GAMES HELP MENU**
 
-━━━━━━━━━━━━━━━
+🎮 **GAMES**
+• `/bomb` - Bomb Pass Game
+• `/spy` - Find the Spy
+• `/identity` - Role Play
+• `/finger` - Speed Click
+• `/story` - One Word Story
+• `/ghost` - Ghost Reply
+• `/lie` - Lie Detector
 
-🎮 CORE GAMES
+💰 **ECONOMY**
+• `/daily` - Get Daily Coins
+• `/claim` - Claim Rewards
+• `/rob` - Rob Coins (Reply)
+• `/pay` - Send Coins
+• `/kill` - Kill Action
 
-💣 /bomb
-Pass The Bomb Before It Explodes.
+💘 **LOVE & FUN**
+• `/couple` - Match Maker
+• `/love` - Love Meter
+• `/kiss` / `/hug` - Actions
+• `/brain` - IQ Level
+• `/puzzle` - Solve It
+• `/truth` / `/dare` - Party Game
 
-🕵️ /spy
-Find The Secret Spy In Group.
+👤 **USER**
+• `/start` • `/help` • `/profile` • `/leaderboard`
 
-🎭 /identity
-Fake Identity Role Game.
+📢 **OWNER**
+• `/broadcast` - Global Msg
 
-⚡ /finger
-Fastest Click Wins The Round.
-
-📖 /story
-One Word Story Game.
-
-👻 /ghost
-Ghost Reply Challenge.
-
-😭 /lie
-Lie Detector Game.
-
-━━━━━━━━━━━━━━━
-
-💰 ECONOMY SYSTEM
-
-🎁 /daily
-Claim Daily Rewards.
-
-🪙 /claim
-Claim Coins Reward.
-
-💸 /rob
-Rob Coins From User (Reply Required).
-
-💰 /pay
-Send Coins To Users.
-
-🔪 /kill
-Funny Kill Action Game.
-
-━━━━━━━━━━━━━━━
-
-💘 LOVE & RELATIONSHIP
-
-💞 /couple
-Couple Match Percentage.
-
-💕 /love
-Love Meter Checker.
-
-💋 /kiss @user
-Kiss Someone.
-
-🤗 /hug @user
-Hug Someone.
-
-━━━━━━━━━━━━━━━
-
-😈 FUN / PARTY COMMANDS
-
-🧠 /brain
-Check IQ Level.
-
-🧩 /puzzle
-Solve Random Puzzle.
-
-🔥 /truth
-Truth Question Game.
-
-😈 /dare
-Dare Challenge Game.
-
-━━━━━━━━━━━━━━━
-
-👤 USER COMMANDS
-
-/start - Start Bot
-/help - Open Help Menu
-/profile - Your Profile
-/leaderboard - Global Ranking
-
-━━━━━━━━━━━━━━━
-
-📢 OWNER COMMANDS
-
-/broadcast - Send Message To All Users
-
-━━━━━━━━━━━━━━━
-
-⚡ MORE FEATURES
-
-- Clan System Coming Soon
-- PvP Battles Coming Soon
-- AI Chaos Events Coming Soon
+✨ *New features like Clans coming soon!*
 """
 
 @router.message(CommandStart())
@@ -141,16 +68,22 @@ async def start_command(message: Message):
     await message.answer_photo(
         photo=START_IMAGE,
         caption=START_TEXT,
-        reply_markup=start_buttons
+        reply_markup=start_buttons,
+        parse_mode="Markdown"
     )
 
 
 @router.callback_query(F.data == "help_menu")
 async def help_menu(callback: CallbackQuery):
-
-    await callback.message.edit_caption(
-        caption=HELP_TEXT,
-        reply_markup=start_buttons
-    )
-
+    # कैप्शन को एडिट करने से पहले यह चेक करेगा कि टेक्स्ट लिमिट में है
+    try:
+        await callback.message.edit_caption(
+            caption=HELP_TEXT,
+            reply_markup=start_buttons,
+            parse_mode="Markdown"
+        )
+    except Exception:
+        # अगर फिर भी बड़ा होता है, तो यह बिना फोटो के सीधा मैसेज भेज देगा (सुरक्षा के लिए)
+        await callback.message.answer(HELP_TEXT, parse_mode="Markdown")
+        
     await callback.answer()
