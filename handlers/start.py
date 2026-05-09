@@ -11,46 +11,67 @@ router = Router()
 
 
 START_TEXT = """
-✨ Welcome To All In One Games Bot ✨
+✨ Welcome To Vampire Games Bot ✨
 
-🎮 The Ultimate Group Chaos Games Bot.
+🎮 Premium Multiplayer Chaos Games
 
-Play:
-💣 Bomb Battle
+💣 Bomb Battles
 🕵️ Secret Spy
 🎭 Fake Identity
 ⚡ Fastest Finger
 📖 Story Mode
 👻 Ghost Reply
 
-🔥 Premium Multiplayer Experience
-⚔️ Real-Time Group Games
-🏆 Leaderboards & Rewards
-
-Add Me To Your Group And Start The Chaos.
+🔥 Add Me To Your Group
+And Start The Chaos 😭
 """
 
 
 HELP_TEXT = """
-📚 Available Commands
+📚 VAMPIRE GAMES HELP MENU
+
+━━━━━━━━━━━━━━━
+
+🎮 AVAILABLE GAMES
+
+💣 /bomb
+Pass The Bomb Before It Explodes.
+
+🕵️ /spy
+Find The Secret Spy In Group.
+
+🎭 /identity
+Copy Another User's Typing Style.
+
+⚡ /finger
+Fastest Click Wins The Round.
+
+📖 /story
+Create Funny One Word Stories.
+
+👻 /ghost
+Continue Haunted Messages.
+
+😭 /lie
+Funny Lie Detector Game.
+
+━━━━━━━━━━━━━━━
+
+👤 USER COMMANDS
 
 /start - Start The Bot
 /help - Open Help Menu
 
-🎮 Games Commands
-
-/bomb - Pass The Bomb
-/spy - Secret Spy Game
-/identity - Fake Identity
-/finger - Fastest Finger
-/story - One Word Story
-/ghost - Ghost Reply
-/lie - Lie Detector
-
-👤 User Commands
-
-/profile - Your Profile
+/profile - View Your Profile
 /leaderboard - Global Rankings
+
+━━━━━━━━━━━━━━━
+
+📢 OWNER COMMANDS
+
+/broadcast - Send Message To All Users
+
+━━━━━━━━━━━━━━━
 
 ⚡ More Games Coming Soon
 """
@@ -75,3 +96,5 @@ async def help_menu(callback: CallbackQuery):
         caption=HELP_TEXT,
         reply_markup=start_buttons
     )
+
+    await callback.answer()
