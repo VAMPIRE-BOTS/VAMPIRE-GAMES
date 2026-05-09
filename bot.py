@@ -2,7 +2,7 @@ import asyncio
 import uvloop
 
 from aiogram import Bot, Dispatcher
-# यहाँ नया इम्पोर्ट जोड़ा गया है
+# नया इम्पोर्ट यहाँ जोड़ा गया है
 from aiogram.client.default import DefaultBotProperties
 
 from config import BOT_TOKEN
@@ -32,7 +32,7 @@ from games.puzzle import router as puzzle_router
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
-# BOT CLIENT - यहाँ बदलाव किया गया है ताकि एरर न आए
+# BOT CLIENT - यहाँ एरर फिक्स किया गया है
 bot = Bot(
     token=BOT_TOKEN, 
     default=DefaultBotProperties(parse_mode="HTML")
@@ -67,6 +67,7 @@ async def main():
     print("🎮 Vampire Game Bot Started ⚡ Mad by @lVAMPIRE_KINGl")
 
     try:
+        # बोट को रन करने का तरीका
         await dp.start_polling(bot)
     finally:
         await bot.session.close()
